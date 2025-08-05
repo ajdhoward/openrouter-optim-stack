@@ -1,0 +1,20 @@
+{
+  "project": "OpenRouter Optimisation Stack",
+  "version": "1.2.0",
+  "updated": "2025-08-05",
+  "branches": [
+    "main",
+    "diagnostics"
+  ],
+  "description": "Self-hosted stack for optimised OpenRouter.ai usage with diagnostics branch.",
+  "components": [
+    "Caddy",
+    "LiteLLM",
+    "Helicone",
+    "LocalAI",
+    "Flowise",
+    "n8n",
+    "openrouter-web"
+  ],
+  "instructions_for_ai": "Load docs/CONTEXT.md and use it as canonical context."
+}
