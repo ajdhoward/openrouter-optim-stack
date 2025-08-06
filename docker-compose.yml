@@ -16,7 +16,7 @@ services:
       - "8443:8443"
     volumes:
       - ./configs/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_:/data  # Fixed volume mapping
+      - caddy_:/data  # Corrected volume mapping
     restart: unless-stopped
 
   flowise:
@@ -44,4 +44,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  caddy_  # Named volume definition
+  caddy_
