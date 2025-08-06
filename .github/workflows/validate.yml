@@ -1,0 +1,20 @@
+name: Validate Configuration
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Validate docker-compose
+        run: |
+          docker compose -f docker-compose.yml config
+          
+      - name: Validate Caddyfile
+        run: |
+          docker run -v ${{ github.workspace }}/configs/caddy:/etc/caddy caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile
