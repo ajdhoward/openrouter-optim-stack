@@ -1,7 +1,6 @@
 :8443 {
     tls internal
     encode gzip
-    experimental_http3
     
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
@@ -12,27 +11,21 @@
     handle /flowise* {
         reverse_proxy flowise:3001
     }
-
     handle /n8n* {
         reverse_proxy n8n:5678
     }
-
     handle /helicone* {
         reverse_proxy helicone:8585
     }
-
     handle /ai/* {
         reverse_proxy cactus-router:8000
     }
-
     handle /docs/* {
         reverse_proxy paperless:8000
     }
-
     handle /text/* {
         reverse_proxy languagetool:8081
     }
-
     handle / {
         respond "Life OS - Personal AI Co-Pilot" 200
     }
