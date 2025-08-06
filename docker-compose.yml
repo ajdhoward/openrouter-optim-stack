@@ -16,7 +16,7 @@ services:
       - "8443:8443"
     volumes:
       - ./configs/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_/data
+      - caddy_:/data
     restart: unless-stopped
 
   flowise:
