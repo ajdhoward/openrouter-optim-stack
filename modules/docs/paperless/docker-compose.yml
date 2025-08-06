@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    networks:
+      - life-os-net
+    volumes:
+      - ./shared/data/paperless//usr/src/paperless/data
+      - ./shared/data/paperless/media:/usr/src/paperless/media
+    environment:
+      - PAPERLESS_URL=/docs
+      - PAPERLESS_TIME_ZONE=UTC
+    restart: unless-stopped
+
+networks:
+  life-os-net:
+    external: true

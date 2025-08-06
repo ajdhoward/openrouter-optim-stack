@@ -1,0 +1,47 @@
+version: "3.8"
+
+networks:
+  life-os-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
+
+services:
+  api-gateway:
+    image: caddy:2-alpine
+    networks:
+      - life-os-net
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./configs/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_/data
+    restart: unless-stopped
+
+  flowise:
+    image: flowiseai/flowise:latest
+    networks:
+      - life-os-net
+    environment:
+      - FLOWISE_USERNAME=${FLOWISE_USERNAME}
+      - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n:latest
+    networks:
+      - life-os-net
+    environment:
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
+    restart: unless-stopped
+
+  helicone:
+    image: helicone/helicone:latest
+    networks:
+      - life-os-net
+    restart: unless-stopped
+
+volumes:
+  caddy_

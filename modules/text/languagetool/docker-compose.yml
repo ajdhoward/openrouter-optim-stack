@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  languagetool:
+    image: ghcr.io/languagetool-org/languagetool:latest
+    networks:
+      - life-os-net
+    environment:
+      - LT_PORT=8081
+    restart: unless-stopped
+
+networks:
+  life-os-net:
+    external: true

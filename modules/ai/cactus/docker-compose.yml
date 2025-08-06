@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  cactus-router:
+    image: cactus-ai/router:latest
+    networks:
+      - life-os-net
+    environment:
+      - ESCALATION_THRESHOLD=${ESCALATION_THRESHOLD}
+      - CONSENSUS_MODELS=${CONSENSUS_MODELS}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - CACTUS_LOCAL_MODEL=ollama/tinyllama:q2_K
+      - CACTUS_CLOUD_PROVIDERS=openrouter
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+networks:
+  life-os-net:
+    external: true
