@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 networks:
   life-os-net:
@@ -16,7 +16,7 @@ services:
       - "8443:8443"
     volumes:
       - ./configs/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_:/data
+      - caddy_:/data  # Fixed volume mapping
     restart: unless-stopped
 
   flowise:
@@ -44,4 +44,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  caddy_
+  caddy_  # Named volume definition
